@@ -59,7 +59,7 @@ const Index = () => {
       }
 
       const data = await response.json();
-      setGeneratedImage(data.image_url || data.url || data.imagen);
+      setGeneratedImage(data.url_imagen_final);
       
       toast({
         title: "¡Éxito!",
@@ -167,7 +167,7 @@ const Index = () => {
                 Resultado
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4">
               <div className="flex items-center justify-center min-h-[400px] lg:min-h-[600px] bg-muted rounded-lg border-2 border-border">
                 {generatedImage ? (
                   <img
@@ -181,6 +181,19 @@ const Index = () => {
                   </p>
                 )}
               </div>
+              
+              {generatedImage && (
+                <Button
+                  asChild
+                  className="w-full h-12 text-lg font-semibold"
+                  size="lg"
+                  variant="secondary"
+                >
+                  <a href={generatedImage} download="obra-de-arte.jpg">
+                    Descargar Imagen
+                  </a>
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
